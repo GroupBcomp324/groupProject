@@ -27,7 +27,7 @@ var http = require('http'),
   testApp.get("", function(req, res){
       client.search(searchRequest).then(response => {
           for (i=0;i<3;i++){
-          res.json(response.jsonBody.businesses[i]);
+            searchResults.push(response.jsonBody.businesses[i]);
           }
       }).then(function() {
         client.search(searchRequest2).then(response => {
