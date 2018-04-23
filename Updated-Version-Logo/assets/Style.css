@@ -208,7 +208,7 @@ input[type='radio']:checked:after, input[type='checkbox']:checked:after {backgro
     padding: 10px;
     text-align: center;
     display: block;
-    width: 90%;
+    width: 100%;
     margin: 10px auto;
 }
 
