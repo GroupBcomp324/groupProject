@@ -139,34 +139,41 @@ function jsonDataSuggestions() { $.getJSON("http://localhost:2018").then(respons
     pricesContent = document.getElementById("categories").innerHTML;
     closestContent = document.getElementById("closest").innerHTML;
     var closestDistance = Array.min(distancesArray);
-		for (i in businessData) {
-            if(businessData[i].rating >= 4.5) {
-                mostPopularContent  +=  "<div class='restaurantTabs'><div class='suggestionsTabsHeaders'>" + businessData[i].name + "</div><br>";
-                mostPopularContent  +=  "Number of reviews: " + businessData[i].review_count + "<br>";
-                mostPopularContent  +=  "Rating: " + businessData[i].rating + "<br>";
-                mostPopularContent  +=  "Phone: " + businessData[i].phone + "<br></div>";
-                }
-
-                if(businessData[i].price.length == 1) {
-                    pricesContent  +=  "<div class='restaurantTabsPrices'><div class='suggestionsTabsHeaders'></div><br><br>";
-                    pricesContent  +=   businessData[i].name + "<br>";
-                    pricesContent  +=  "<img class='zoom' src='" + businessData[i].image_url + "' height='75' name='restaurantImage'"+
-                    "onmouseover=\"restaurantImage.width='300';restaurantImage.height='200';\""+
-                    "onmouseout=\"restaurantImage.width='150';restaurantImage.height='100';\" /> <br>";
-                    pricesContent  +=  "Address: " + businessData[i].location.display_address + "<br></div>";
-                }
-
-                if(businessData[i].distance == closestDistance){
-                    closestContent  +=  "<div class='restaurantTabsPrices'><div class='suggestionsTabsHeaders'></div><br><br>";
-                    closestContent  +=   businessData[i].name + "<br>";
-                    closestContent  +=   "Phone: " + businessData[i].phone + "<br>";
-                    closestContent  +=  "<img src='" + businessData[i].image_url + "' height='75' name='restaurantImage'"+
-                    "onmouseover=\"restaurantImage.width='300';restaurantImage.height='200';\""+
-                    "onmouseout=\"restaurantImage.width='150';restaurantImage.height='100';\" /> <br>";
-                    closestContent  +=  "Address: " + businessData[i].location.display_address + "<br></div>";
-                }
-
+    for (i in businessData) {
+        if(businessData[i].rating >= 4.5) {
+            mostPopularContent  +=  "<div class='restaurantTabsPrices'><div class='suggestionsTabsHeaders'></div><br><br>";
+            mostPopularContent  +=  businessData[i].name + "<br><br>";
+            mostPopularContent  +=  "<img class='zoom' src='" + businessData[i].image_url + "' height='75' name='restaurantImage'"+
+            "onmouseover=\"restaurantImage.width='300';restaurantImage.height='200';\""+
+            "onmouseout=\"restaurantImage.width='150';restaurantImage.height='100';\" /> <br>";
+            mostPopularContent  +=  "Number of reviews: " + businessData[i].review_count + "<br>";
+            mostPopularContent  +=  "Rating: " + businessData[i].rating + "<br>";
+            mostPopularContent  +=  "Phone: " + businessData[i].phone + "<br></div>";
         }
+
+        if(businessData[i].price.length == 1) {
+            pricesContent  +=  "<div class='restaurantTabsPrices'><div class='suggestionsTabsHeaders'></div><br><br>";
+            pricesContent  +=   businessData[i].name + "<br><br>";
+            pricesContent  +=  "<img class='zoom' src='" + businessData[i].image_url + "' height='75' name='restaurantImage'"+
+            "onmouseover=\"restaurantImage.width='300';restaurantImage.height='200';\""+
+            "onmouseout=\"restaurantImage.width='150';restaurantImage.height='100';\" /> <br>";
+            pricesContent  +=  "Price level: " + businessData[i].price + "<br>";
+            pricesContent  +=  "Address: " + businessData[i].location.display_address + "<br></div>";
+        }
+        
+        if(businessData[i].distance == closestDistance){
+            closestContent  +=  "<div class='restaurantTabsPrices'><div class='suggestionsTabsHeaders'></div><br><br>";
+            closestContent  +=   businessData[i].name + "<br><br>";
+            closestContent  +=  "<img class= 'zoom' src='" + businessData[i].image_url + "' height='75' name='restaurantImage'"+
+            "onmouseover=\"restaurantImage.width='300';restaurantImage.height='200';\""+
+            "onmouseout=\"restaurantImage.width='150';restaurantImage.height='100';\" /> <br>";
+            closestContent  +=   "Phone: " + businessData[i].phone + "<br>";
+            closestContent  +=  "Address: " + businessData[i].location.display_address + "<br></div>";
+        }
+        
+
+
+    }
         document.getElementById("mostPopular").innerHTML = mostPopularContent;
         document.getElementById("categories").innerHTML = pricesContent;
         document.getElementById("closest").innerHTML = closestContent;
