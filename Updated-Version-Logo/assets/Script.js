@@ -113,6 +113,67 @@ function jsonData() {
             }
 }
 
+//Suggestions code
+
+var i, x ="";
+
+
+var jsonArray = [
+  {
+    "dayOfWeek": "Monday",
+    "nameOfRestaurant" : "Rogers Park Social",
+    "special" : "$6 Glasses of Wine",
+    "address" : "6920 N Glenwood Ave., Chicago, IL 60626"
+  },
+  {
+    "dayOfWeek": "Tuesday",
+    "nameOfRestaurant" : "R Public House",
+    "special" : "$5 Burger Monday",
+    "address" : "1508 W Jarvis Ave., Chicago, IL 60626"
+  },
+  {
+    "dayOfWeek": "Wednesday",
+    "nameOfRestaurant" : "Pub 626",
+    "special" : "$10 Mussels and $5 Mules",
+    "address" : "1406 W Morse Ave, Chicago, IL 60626"
+  },
+  {
+    "dayOfWeek": "Thursday",
+    "nameOfRestaurant" : "J.B. Albertos's",
+    "special" : "1/2 Chicken Dinner for $8.50",
+    "address" : "1326 West Morse Avenue, Chicago, IL 60626"
+  },
+  {
+    "dayOfWeek": "Friday",
+    "nameOfRestaurant" : "Bulldog Ale House",
+    "special" : "All You Can Eat Fish Fry $10.99",
+    "address" : "6606 N Sheridan Rd, Chicago, IL 60626"
+  },
+  {
+    "dayOfWeek": "Saturday",
+    "nameOfRestaurant" : "Bangers & Lace",
+    "special" : "$3 Hot Dog and Chips",
+    "address" : "810 Grove St, Evanston, IL 60201"
+  },
+  {
+    "dayOfWeek": "Sunday",
+    "nameOfRestaurant" : "Lighthouse Tavern",
+    "special" : "Crabs: $1 per oz",
+    "address" : "7301 N Sheridan Rd, Chicago, IL 60626"
+  }
+];
+
+for (i in jsonArray) {
+  x  +=  "<div class='restaurantTabs'><div class='suggestionsTabsHeaders'>" + jsonArray[i].dayOfWeek + "</div><br>";
+  x  +=  jsonArray[i].nameOfRestaurant + "<br>";
+  x  +=  jsonArray[i].special + "<br>";
+  x  +=  jsonArray[i].address + "<br></div>";
+}
+
+  document.getElementById("thisWeeksSpecials").innerHTML = x;
+
+
+
 function jsonDataSuggestions() { $.getJSON("http://localhost:2018").then(response => {
     var lookup = {};
     var items = response;
@@ -169,8 +230,13 @@ function jsonDataSuggestions() { $.getJSON("http://localhost:2018").then(respons
             "onmouseout=\"restaurantImage.width='150';restaurantImage.height='100';\" /> <br>";
             closestContent  +=   "Phone: " + businessData[i].phone + "<br>";
             closestContent  +=  "Address: " + businessData[i].location.display_address + "<br></div>";
-        }
-        
+             lat = businessData[i].coordinates.latitude;
+             lon = businessData[i].coordinates.longitude;
+             var lat, lon, zoom = 0;
+             var address = businessData[i].name + ", " + businessData[i].location.display_address.join();
+             zoom = 16;
+             displayMapAt(lat, lon, zoom, address)
+        }       
 
 
     }
@@ -184,7 +250,17 @@ function jsonDataSuggestions() { $.getJSON("http://localhost:2018").then(respons
 			console.log('error found = ', err);
     });
     }
+    function displayMapAt(lat, lon, zoom, address) {
+        $("#map")
+                .html(
+                        "<iframe id=\"map_frame\" "
+                                + "width=\"500px\" height=\"400px\" frameborder=\"0\" scrolling=\"no\" marginheight=\"0\" marginwidth=\"0\" "
+                                + "src=\"https://www.google.com/maps/embed/v1/place?key=AIzaSyAF4PzD_uWhVxLmHj8f-WdOkMg_iWHLLfs&q="
+                                + address
+                                + "&zoom=" + zoom + "\"" + "></iframe>");
 
+    }
+    
 $("p#results").hide();
 $("#submitButton").click(function() {
     $( "#theForm" ).submit();
