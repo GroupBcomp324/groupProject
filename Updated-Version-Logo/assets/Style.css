@@ -137,9 +137,14 @@ h4 {
     font-size: 30px;
 }
 
-input, p {
+input {
     font-family: 'Arimo', sans-serif;
     font-size: 20px;
+}
+
+p{
+    font-family: 'Open Sans', sans-serif;
+    font-size: 19px;
 }
 
 fieldset {
@@ -212,6 +217,21 @@ input[type='radio']:checked:after, input[type='checkbox']:checked:after {backgro
     margin: 10px auto;
 }
 
+/* plus and minus idicators on accordion */
+.accordion:after {
+    content: '\002B';
+    float: right;
+    margin-right: 20px;
+    font-size: 25px;
+}
+
+.active:after {
+    content: "\2212";
+    float: right;
+    margin-right: 20px;
+    font-size: 25px;
+}
+
 .panel {
     background-color: white;
     display: none;
@@ -225,4 +245,24 @@ input[type='radio']:checked:after, input[type='checkbox']:checked:after {backgro
     font-size: 22px;
     width: 100%;
     margin-top: 10px;
+}
+
+table, th, td {
+    padding: 5px;
+}
+
+table {
+    width: 90%;
+    margin: auto;
+}
+
+th {
+    font-family: 'Open Sans', sans-serif;
+    border: 1px solid black;
+}
+
+td{
+    font-family: 'Arimo', sans-serif;
+    font-size: 14px;
+    border: 1px solid black;
 }
