@@ -117,7 +117,7 @@ function jsonData() {
 
 var i, x ="";
 
-
+/*
 var jsonArray = [
   {
     "dayOfWeek": "Monday",
@@ -172,7 +172,7 @@ for (i in jsonArray) {
 
   document.getElementById("thisWeeksSpecials").innerHTML = x;
 
-
+*/
 
 function jsonDataSuggestions() { $.getJSON("http://localhost:2018").then(response => {
     var lookup = {};
@@ -221,7 +221,7 @@ function jsonDataSuggestions() { $.getJSON("http://localhost:2018").then(respons
             pricesContent  +=  "Price level: " + businessData[i].price + "<br>";
             pricesContent  +=  "Address: " + businessData[i].location.display_address + "<br></div>";
         }
-        
+
         if(businessData[i].distance == closestDistance){
             closestContent  +=  "<div class='restaurantTabsPrices'><div class='suggestionsTabsHeaders'></div><br><br>";
             closestContent  +=   businessData[i].name + "<br><br>";
@@ -236,7 +236,7 @@ function jsonDataSuggestions() { $.getJSON("http://localhost:2018").then(respons
              var address = businessData[i].name + ", " + businessData[i].location.display_address.join();
              zoom = 16;
              displayMapAt(lat, lon, zoom, address)
-        }       
+        }
 
 
     }
@@ -260,7 +260,7 @@ function jsonDataSuggestions() { $.getJSON("http://localhost:2018").then(respons
                                 + "&zoom=" + zoom + "\"" + "></iframe>");
 
     }
-    
+
 $("p#results").hide();
 $("#submitButton").click(function() {
     $( "#theForm" ).submit();
